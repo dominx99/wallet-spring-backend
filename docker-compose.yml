@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  maven:
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      wallet:
+        ipv4_address: 10.18.0.6
+  mysql:
+    image: mysql
+    volumes:
+      - ./../data/mysql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=wallet
+      - MYSQL_HOST=127.0.0.1
+    networks:
+      wallet:
+        ipv4_address: 10.18.0.7
+
+networks:
+  wallet:
+    external: true
