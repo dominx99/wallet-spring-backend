@@ -11,12 +11,7 @@ public class TransactionController {
         this.transactionRepository = transactionRepository;
     }
 
-    @GetMapping("/hello")
-    public String show() {
-        return "Test";
-    }
-
-    @GetMapping("/transactions")
+    @GetMapping("/api/transactions")
     public Iterable<Transaction> index() {
         Iterable<Transaction> transactions = transactionRepository.findAll();
 
