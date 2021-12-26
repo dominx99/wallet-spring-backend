@@ -8,7 +8,7 @@ upmysql:
 	@docker-compose up mysql -d
 
 install:
-	@./mvnw clean install
+	docker run -v $(PWD):/app maven:3.8.3-openjdk-17 sh -c "cd /app && mvn clean install"
 
 build:
 	@docker-compose build
