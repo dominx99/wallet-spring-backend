@@ -5,7 +5,7 @@ down:
 	@docker-compose down
 
 upmysql:
-	@docker-compose up mysql -d
+	@docker-compose up -d mysql
 
 build:
 	@docker-compose build
