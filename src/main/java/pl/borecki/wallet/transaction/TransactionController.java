@@ -30,6 +30,20 @@ public class TransactionController {
                 .orElseThrow(() -> new ResourceNotFoundException("Nie ma tranzakcji z numerem ID:" +id));
         return ResponseEntity.ok(transaction);
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Transaction> update(@PathVariable long id,@RequestBody Transaction transactionDetails){
+        Transaction update = transactionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Nie ma tranzakcji z numerem ID:" +id));
+
+        update.setName(transactionDetails.getName());
+        update.setValue(transactionDetails.getValue());
+        update.setType(transactionDetails.getType());
+
+        transactionRepository.save(update);
+
+        return ResponseEntity.ok(update);
+    }
 }
 
 
