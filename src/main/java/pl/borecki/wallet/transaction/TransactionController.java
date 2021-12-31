@@ -1,5 +1,6 @@
 package pl.borecki.wallet.transaction;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,6 +44,15 @@ public class TransactionController {
         transactionRepository.save(update);
 
         return ResponseEntity.ok(update);
+    }
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> delete (@PathVariable long id){
+        Transaction transaction = transactionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Nie ma tranzakcji z numerem ID:" +id));
+
+        transactionRepository.delete(transaction);
+
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
 
