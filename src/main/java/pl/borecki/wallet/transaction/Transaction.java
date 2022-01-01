@@ -7,13 +7,15 @@ import pl.borecki.wallet.category.Category;
 
 import javax.persistence.*;
 
+import static javax.persistence.GenerationType.*;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private String name;

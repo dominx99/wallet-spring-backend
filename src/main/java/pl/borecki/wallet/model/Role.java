@@ -1,0 +1,22 @@
+package pl.borecki.wallet.model;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import static javax.persistence.GenerationType.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Role {
+    @Id
+    @GeneratedValue(strategy = AUTO)
+    private Long id;
+    private String name;
+}
