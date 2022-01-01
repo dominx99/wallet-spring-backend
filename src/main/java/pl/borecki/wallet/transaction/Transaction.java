@@ -1,6 +1,5 @@
 package pl.borecki.wallet.transaction;
 
-import org.springframework.core.SpringVersion;
 import pl.borecki.wallet.category.Category;
 
 import javax.persistence.*;
@@ -21,13 +20,13 @@ public class Transaction {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
@@ -63,4 +62,10 @@ public class Transaction {
         this.type = type;
         this.category = category;
     }
+    public Category getCategory() {return category;}
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
 }

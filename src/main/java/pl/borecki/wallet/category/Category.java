@@ -11,7 +11,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    public String name;
 
     public Category() { /// nie wiem po co ten pusty konstruktor ale bez tego wywala błąd
 
