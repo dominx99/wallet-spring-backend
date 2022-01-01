@@ -1,9 +1,9 @@
 package pl.borecki.wallet.transaction;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.core.SpringVersion;
+import pl.borecki.wallet.category.Category;
+
+import javax.persistence.*;
 
 @Entity
 public class Transaction {
@@ -16,6 +16,10 @@ public class Transaction {
     private Integer value;
 
     private String type;
+
+    public Transaction() {     //to samo co w Category - potrzebny pusty konstruktor
+
+    }
 
     public Long getId() {
         return id;
@@ -47,5 +51,16 @@ public class Transaction {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Transaction(String name, Integer value, String type, Category category) {
+        this.name = name;
+        this.value = value;
+        this.type = type;
+        this.category = category;
     }
 }
