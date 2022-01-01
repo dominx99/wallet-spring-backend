@@ -1,10 +1,16 @@
 package pl.borecki.wallet.transaction;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.borecki.wallet.category.Category;
 
 import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +22,7 @@ public class Transaction {
 
     private String type;
 
-    public Transaction() {     //to samo co w Category - potrzebny pusty konstruktor
-
-    }
-
-//    public Long getId() {
+    //    public Long getId() {
 //        return id;
 //    }
 //
