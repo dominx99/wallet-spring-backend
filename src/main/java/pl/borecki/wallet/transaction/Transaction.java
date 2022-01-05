@@ -10,9 +10,9 @@ import javax.persistence.*;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Data
+
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class Transaction {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -24,13 +24,13 @@ public class Transaction {
 
     private String type;
 
-    //    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
+        public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -68,8 +68,8 @@ public class Transaction {
     }
     public Category getCategory() {return category;}
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
 
 }

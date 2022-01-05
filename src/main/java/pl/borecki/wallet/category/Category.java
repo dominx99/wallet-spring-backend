@@ -14,7 +14,7 @@ import static javax.persistence.GenerationType.*;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class Category {
     @Id
     @GeneratedValue(strategy = IDENTITY)
