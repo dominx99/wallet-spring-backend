@@ -1,20 +1,12 @@
 package pl.borecki.wallet;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import pl.borecki.wallet.appUserService.AppUserService;
-import pl.borecki.wallet.category.Category;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.borecki.wallet.category.CategoryRepository;
-import pl.borecki.wallet.model.AppUser;
-import pl.borecki.wallet.model.Role;
-import pl.borecki.wallet.transaction.Transaction;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @SpringBootApplication
 public class WalletApplication {
@@ -28,6 +20,11 @@ public class WalletApplication {
 //		List<Transaction> transactions = Arrays.asList(rata);
 //		category.setTransactions(transactions);
 //		categoryRepository.save(category);
+
+		}
+		@Bean
+		PasswordEncoder passwordEncoder(){
+			return new BCryptPasswordEncoder();
 	}
 
 //	@Bean
