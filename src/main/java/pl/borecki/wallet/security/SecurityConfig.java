@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAuthenticationFilter.setFilterProcessesUrl("/api/login"); //zmiana adresu url bo samo login wykorzystywane jest przez CustomAuthenticationFilter
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeRequests().antMatchers(GET, "/api/login/**").permitAll();
+        http.authorizeRequests().antMatchers(GET, "/api/login/**", "/api/token/refresh/**").permitAll();
 //      http.authorizeRequests().antMatchers(GET, "/api/user/**").hasAnyAuthority("ROLE_USER"); //DOPIERO JAK W BAZIE DANYCH USER BEDZIE MIAL PRZYPISANA ROLE
 //      http.authorizeRequests().antMatchers(GET, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN"); // TO SAMO CO WYZEJ
         http.authorizeHttpRequests().anyRequest().authenticated();

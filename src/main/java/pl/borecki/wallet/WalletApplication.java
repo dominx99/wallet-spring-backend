@@ -37,7 +37,7 @@ public class WalletApplication {
 	@Bean
 	CommandLineRunner run(AppUserService appUserService) {
 		return args -> {
-			System.out.println("cos tamadfasdfasdfasdf");
+
 //			appUserService.saveRole(new Role(null, "ROLE_ADMIN"));
 //			appUserService.saveRole(new Role(null, "ROLE_MANAGER"));
 //			appUserService.saveRole(new Role(null, "ROLE_USER"));
