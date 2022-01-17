@@ -20,7 +20,7 @@ public class Transaction {
 
     private String name;
 
-    private Integer value;
+    private Long value;
 
     private String type;
 
@@ -40,11 +40,11 @@ public class Transaction {
         this.name = name;
     }
 
-    public Integer getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 
@@ -60,7 +60,7 @@ public class Transaction {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Transaction(String name, Integer value, String type, Category category) {
+    public Transaction(String name, Long value, String type, Category category) {
         this.name = name;
         this.value = value;
         this.type = type;

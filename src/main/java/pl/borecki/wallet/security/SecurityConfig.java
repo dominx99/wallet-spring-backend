@@ -16,6 +16,7 @@ import pl.borecki.wallet.filter.CustomAuthenticationFilter;
 
 import javax.persistence.GeneratedValue;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.security.config.http.SessionCreationPolicy.*;
 
 @Configuration
@@ -32,10 +33,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+        customAuthenticationFilter.setFilterProcessesUrl("/api/login"); //zmiana adresu url bo samo login wykorzystywane jest przez CustomAuthenticationFilter
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeHttpRequests().anyRequest().permitAll();
-        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+        http.authorizeRequests().antMatchers(GET, "/api/login/**").permitAll();
+//      http.authorizeRequests().antMatchers(GET, "/api/user/**").hasAnyAuthority("ROLE_USER"); //DOPIERO JAK W BAZIE DANYCH USER BEDZIE MIAL PRZYPISANA ROLE
+//      http.authorizeRequests().antMatchers(GET, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN"); // TO SAMO CO WYZEJ
+        http.authorizeHttpRequests().anyRequest().authenticated();
+        http.addFilter(customAuthenticationFilter);
     }
 
     @Bean

@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.borecki.wallet.model.AppUser;
 import pl.borecki.wallet.model.Role;
@@ -24,6 +25,7 @@ import java.util.List;
 public class AppUserServiceImplementation implements AppUserService, UserDetailsService { //UserDetailService wtkorzystuje metode loadUserByUsername
     private final AppUserRepository appUserRepository;
     private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -38,12 +40,13 @@ public class AppUserServiceImplementation implements AppUserService, UserDetails
         appUser.getRoles().forEach(role -> {
             authorities.add(new SimpleGrantedAuthority(role.getName())); //wybor roli dla uzytkownika
         });
-        return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPasswd(), authorities);
+        return new org.springframework.security.core.userdetails.User(appUser.getUsername(), appUser.getPasswd(), authorities );
     }
 
     @Override
     public AppUser saveUser(AppUser appuser) {
         log.info("Zapisanie nowego użytkownika {} do bazy danych", appuser.getName());
+        appuser.setPasswd(passwordEncoder.encode(appuser.getPasswd()));
         return appUserRepository.save(appuser);
     }
 
