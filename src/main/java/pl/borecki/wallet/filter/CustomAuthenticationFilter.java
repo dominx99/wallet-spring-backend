@@ -57,8 +57,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                 .withExpiresAt(new Date(System.currentTimeMillis()+ 60*60*1000)) // ustawiony na godzine
                 .withIssuer(request.getRequestURL().toString())
                 .sign(algorithm);
-//        response.setHeader("access_token", access_token);
-//        response.setHeader("refresh_token", refresh_token);
+//        response.setHeader("access_token", access_token); // na potrzeby testu przesłanie tokena w headerze
+//        response.setHeader("refresh_token", refresh_token); // na potrzeby testu przesłanie tokena w headerze
         Map<String, String> tokeny = new HashMap<>();
         tokeny.put("access_token", access_token);
         tokeny.put("refresh_token", refresh_token);

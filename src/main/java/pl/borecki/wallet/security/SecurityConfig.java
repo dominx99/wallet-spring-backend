@@ -12,7 +12,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import pl.borecki.wallet.filter.CustomAuthenticationFilter;
+import pl.borecki.wallet.filter.CustomAuthorizationFilter;
 
 import javax.persistence.GeneratedValue;
 
@@ -42,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //      http.authorizeRequests().antMatchers(GET, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN"); // TO SAMO CO WYZEJ
         http.authorizeHttpRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
