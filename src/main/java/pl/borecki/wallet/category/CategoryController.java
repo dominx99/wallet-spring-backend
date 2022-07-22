@@ -1,8 +1,6 @@
 package pl.borecki.wallet.category;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.borecki.wallet.transaction.Transaction;
 import pl.borecki.wallet.transaction.TransactionRepository;
 
@@ -20,5 +18,10 @@ public class CategoryController {
         Iterable<Category> category= categoryRepository.findAll();
 
         return category;
+    }
+
+    @PostMapping
+    public Category store(@RequestBody Category category){
+        return categoryRepository.save(category);
     }
 }

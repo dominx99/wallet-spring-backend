@@ -24,6 +24,7 @@ services:
       - "traefik.http.middlewares.cors.headers.addvaryheader=true"
       - traefik.http.routers.walletbackend.middlewares=cors@docker
       - traefik.docker.network=proxy
+      - "traefik.http.routers.walletbackend.tls.certresolver=lets_encrypt_resolver"
     depends_on:
       - mysql
   mysql:

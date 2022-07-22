@@ -1,23 +1,30 @@
 package pl.borecki.wallet.transaction;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import pl.borecki.wallet.category.Category;
+
+import javax.persistence.*;
+
+import static javax.persistence.GenerationType.*;
 
 @Entity
+
+@NoArgsConstructor
+
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private String name;
 
-    private Integer value;
+    private Long value;
 
     private String type;
 
-    public Long getId() {
+        public Long getId() {
         return id;
     }
 
@@ -33,11 +40,11 @@ public class Transaction {
         this.name = name;
     }
 
-    public Integer getValue() {
+    public Long getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(Long value) {
         this.value = value;
     }
 
@@ -48,4 +55,21 @@ public class Transaction {
     public void setType(String type) {
         this.type = type;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    public Transaction(String name, Long value, String type, Category category) {
+        this.name = name;
+        this.value = value;
+        this.type = type;
+        this.category = category;
+    }
+    public Category getCategory() {return category;}
+
+//    public void setCategory(Category category) {
+//        this.category = category;
+//    }
+
 }

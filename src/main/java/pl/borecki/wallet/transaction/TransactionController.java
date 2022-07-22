@@ -3,6 +3,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.borecki.wallet.category.Category;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -40,6 +41,7 @@ public class TransactionController {
         update.setName(transactionDetails.getName());
         update.setValue(transactionDetails.getValue());
         update.setType(transactionDetails.getType());
+
 
         transactionRepository.save(update);
 
